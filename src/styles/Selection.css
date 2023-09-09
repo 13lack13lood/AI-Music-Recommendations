@@ -1,0 +1,46 @@
+@keyframes fadeOutUp {
+	0% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		transform: translateY(-200px);
+		opacity: 0;
+	}
+}
+
+@keyframes fadeInUpSelection {
+	0% {
+		transform: translateY(200px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUpSelectionDelay {
+	0%,
+	40% {
+		transform: translateY(200px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.fadeOutUp {
+	animation: fadeOutUp 1s ease-in;
+}
+
+.fadeInUp {
+	animation: fadeInUpSelection 1s ease-out;
+}
+
+.fadeInUpDelay {
+	animation: fadeInUpSelectionDelay 1.5s ease-out;
+}
