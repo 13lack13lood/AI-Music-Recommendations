@@ -1,42 +1,44 @@
 let generatedData,
-	dataGenerated = false;
+    dataGenerated = false;
 
 const sendCall = (input) => {
-	let params = {
-		prompt: input,
-	};
+    dataGenerated = false;
 
-	let searchParams = new URLSearchParams(params);
+    let params = {
+        prompt: input,
+    };
 
-	console.log(searchParams.toString());
+    let searchParams = new URLSearchParams(params);
 
-	let request = new XMLHttpRequest();
-	request.open("POST", "http://localhost:5000/get-recommendation");
-	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	request.send(searchParams.toString());
-	request.onload = () => {
-		if (request.status == 200) {
-			storeData(JSON.parse(request.response).data);
-			console.log(request.response);
-			setDataGenerated();
-		}
-	};
+    console.log(searchParams.toString());
+
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:5000/get-recommendation");
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send(searchParams.toString());
+    request.onload = () => {
+        if (request.status == 200) {
+            storeData(JSON.parse(request.response).data);
+            console.log(request.response);
+            setDataGenerated();
+        }
+    };
 };
 
 const storeData = (input) => {
-	generatedData = input;
+    generatedData = input;
 };
 
 const setDataGenerated = () => {
-	dataGenerated = true;
+    dataGenerated = true;
 };
 
 const isDataReady = () => {
-	return dataGenerated;
+    return dataGenerated;
 };
 
 const getGeneratedData = () => {
-	return generatedData;
+    return generatedData;
 };
 
 export { sendCall, isDataReady, getGeneratedData };

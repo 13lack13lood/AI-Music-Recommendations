@@ -1,0 +1,48 @@
+input[type="text"] {
+    color: white;
+    background: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    font-size: 2rem;
+}
+
+:focus {
+    outline: none;
+}
+
+.outside {
+    float: left;
+    width: 45%;
+    margin: 40px 3%;
+    position: relative;
+}
+
+.input {
+    border: 0;
+    padding: 5px 0 7px;
+    border: 1px solid transparent;
+    border-bottom-color: #ccc;
+    transition: 0.4s;
+}
+
+.input:focus {
+    padding: 5px 14px 7px;
+    transition: 0.4s;
+}
+
+.input ~ .focus-border {
+    position: absolute;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transition: 0.4s;
+    z-index: -1;
+}
+.input:focus ~ .focus-border {
+    transition: 0.4s;
+    height: 4.1rem;
+    border: 2px solid white;
+    z-index: 1;
+}
