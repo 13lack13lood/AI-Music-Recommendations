@@ -38,7 +38,6 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
             response = JSON.parse(response.substring(response.indexOf("{")));
             console.log(response);
             setGeneratedTracks(getRecommendedTracks(response));
-            // setLoad(false);
         } else {
             setTimeout(() => {
                 setCount_2(count_2 + 1);

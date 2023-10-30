@@ -11,7 +11,8 @@ let tracks,
     artists,
     recommendedTracks,
     callsMade = 0,
-    callsNeeded = 100;
+    callsNeeded = 100,
+    playlistCreated = false;
 
 const authorize = () => {
     const params = {
@@ -87,14 +88,47 @@ const getUserId = () => {
     });
 };
 
-const createPlaylist = () => {
+const createPlaylist = (playlistName, isPublic) => {
+    playlistCreated = false;
+
     let params = {
-        name: "abcd",
+        name: playlistName,
+        public: isPublic,
     };
 
     callAPI(
         "POST",
         `https://api.spotify.com/v1/users/${localStorage.getItem("userid")}/playlists`,
+        function () {
+            let data = JSON.parse(this.response);
+            localStorage.setItem("current_playlist", data.id);
+            setPlaylistCreated();
+        },
+        params
+    );
+};
+
+const setPlaylistCreated = () => {
+    playlistCreated = true;
+};
+
+const isPlaylistCreated = () => {
+    return playlistCreated;
+};
+
+const addSongsToPlaylist = () => {
+    let uris = [];
+    recommendedTracks.forEach((track) => {
+        uris.push(track.uri);
+    });
+
+    let params = {
+        uris: uris,
+    };
+
+    callAPI(
+        "POST",
+        `https://api.spotify.com/v1/playlists/${localStorage.getItem("current_playlist")}/tracks`,
         function () {
             console.log(this.response);
         },
@@ -188,4 +222,4 @@ const getRecommendedTracks = (tracks) => {
     return recommendedTracks;
 };
 
-export { authorize, onPageLoad, getTracks, getArtists, getRecommendedTracks, callsComplete, getUserId, createPlaylist, redirect };
+export { authorize, onPageLoad, getTracks, getArtists, getRecommendedTracks, callsComplete, getUserId, createPlaylist, isPlaylistCreated, addSongsToPlaylist, redirect };

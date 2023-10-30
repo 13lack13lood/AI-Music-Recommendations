@@ -13,7 +13,7 @@ input[type="text"] {
 
 .outside {
     float: left;
-    width: 45%;
+    width: 100%;
     margin: 40px 3%;
     position: relative;
 }
