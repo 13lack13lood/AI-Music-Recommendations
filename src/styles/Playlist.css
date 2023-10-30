@@ -37,30 +37,8 @@
 
 .block-reveal {
     opacity: 0;
-
-    padding: 4px;
-
-    position: relative;
-    overflow: hidden;
-
-    animation: revealBlock 1s 1.3s forwards;
+    animation: revealBlock 1s 1.3s forwards ease-out;
 }
-
-.block-reveal::after {
-    content: "";
-
-    width: 0%;
-    height: 100%;
-    padding-bottom: 4px;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    background: white;
-    animation: revealingIn 1.2s 0.1s forwards, revealingOut 1.2s 1.3s forwards;
-}
-
 /* animations */
 @keyframes revealBlock {
     100% {
@@ -68,22 +46,62 @@
     }
 }
 
-@keyframes revealingIn {
-    0% {
-        width: 0;
-    }
+.button-reveal {
+    opacity: 0;
+    transform: translateY(200px);
+    animation: slideUp 1s 2.3s forwards ease-out;
+}
 
+@keyframes slideUp {
     100% {
-        width: 100%;
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@keyframes revealingOut {
-    0% {
-        transform: translateX(0);
-    }
+.text-disappear {
+    opacity: 1;
+    animation: textFade 1s forwards ease-in;
+}
 
+@keyframes textFade {
     100% {
-        transform: translateX(101%);
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+}
+
+.block-disappear {
+    opacity: 1;
+    animation: fade 1s forwards ease-in;
+}
+
+@keyframes fade {
+    100% {
+        opacity: 0;
+    }
+}
+
+.button-disappear-left {
+    opacity: 1;
+    animation: disappear-left 1s forwards ease-in;
+}
+
+.button-disappear-right {
+    opacity: 1;
+    animation: disappear-right 1s forwards ease-in;
+}
+
+@keyframes disappear-left {
+    100% {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+}
+
+@keyframes disappear-right {
+    100% {
+        opacity: 0;
+        transform: translateX(200px);
     }
 }

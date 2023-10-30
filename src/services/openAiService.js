@@ -13,7 +13,7 @@ const sendCall = (input) => {
     console.log(searchParams.toString());
 
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:5000/get-recommendation");
+    request.open("POST", "http://localhost:5000/get-recommendation-track");
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send(searchParams.toString());
     request.onload = () => {
@@ -21,6 +21,8 @@ const sendCall = (input) => {
             storeData(JSON.parse(request.response).data);
             console.log(request.response);
             setDataGenerated();
+        } else {
+            sendCall(input);
         }
     };
 };

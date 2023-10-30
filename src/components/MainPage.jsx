@@ -30,17 +30,12 @@ const MainPage = () => {
     } else if (display != null && display.startsWith("generate")) {
         return <GeneratedContent display={display} artists={artists} tracks={tracks} setDisplay={setDisplay} />;
     } else if (display != null && display.startsWith("playlist")) {
-        return <Playlist></Playlist>;
+        return <Playlist setDisplay={setDisplay}></Playlist>;
+    } else if (display != null && display.startsWith("selection")) {
+        return <Selection setTracks={setTracks} setArtists={setArtists} setDisplay={setDisplay} />;
     }
 
-    return (
-        // <>
-        //     <Playlist></Playlist>
-        // </>
-        <>
-            <Selection setTracks={setTracks} setArtists={setArtists} setDisplay={setDisplay} />
-        </>
-    );
+    return <Selection setTracks={setTracks} setArtists={setArtists} setDisplay={setDisplay} />;
 };
 
 export default MainPage;

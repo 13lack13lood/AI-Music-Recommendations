@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/UserInfo.css";
 import Button from "./Button";
-import { sendCall } from "../services/openAiService";
+import { sendCall } from "../services/openAIService";
 import Song from "./Song";
 
 const UserInfo = ({ display, tracks, artists, setDisplay }) => {
@@ -53,7 +53,7 @@ const UserInfo = ({ display, tracks, artists, setDisplay }) => {
                         setAnimate(true);
                         setTimeout(() => {
                             setDisplay("generate_" + display);
-                        }, 1000);
+                        }, 1100);
                     }}
                 />
             </div>

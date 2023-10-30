@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getGeneratedData, isDataReady, sendCall } from "../services/openAiService";
+import { getGeneratedData, isDataReady, sendCall } from "../services/openAIService";
 import { getRecommendedTracks, callsComplete, createPlaylist } from "../services/spotifyService";
 import "../styles/GeneratedContent.css";
 import Button from "./Button";
@@ -24,13 +24,18 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
     };
 
     useEffect(() => {
-        console.log(tracks);
+        if (display.startsWith("generate")) {
+            console.log(tracks);
+            setGeneratedData("loading");
 
-        const tracklist = getTrackList(tracks);
-        console.log(tracklist);
+            const tracklist = getTrackList(tracks);
+            console.log(tracklist);
 
-        sendCall(tracklist);
-    }, []);
+            sendCall(tracklist);
+
+            setCount_2(count_2 + 1);
+        }
+    }, [display, setDisplay]);
 
     useEffect(() => {
         if (isDataReady()) {
@@ -38,18 +43,22 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
             response = JSON.parse(response.substring(response.indexOf("{")));
             console.log(response);
             setGeneratedTracks(getRecommendedTracks(response));
+            setCount_1(count_1 + 1);
         } else {
             setTimeout(() => {
+                setGeneratedData("loading");
                 setCount_2(count_2 + 1);
             }, 500);
         }
     }, [count_2, setCount_2]);
 
     useEffect(() => {
+        console.log(callsComplete());
         if (callsComplete() && count_1 % 6 == 0) {
             setGeneratedData(generatedTracks);
             setAnimate(false);
         } else {
+            setGeneratedData("loading");
             setTimeout(() => {
                 setCount_1(count_1 + 1);
             }, 500);

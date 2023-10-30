@@ -117,7 +117,7 @@
 }
 
 .fadeInUpGeneratedDataButton {
-    animation: fadeInUpInfoDelay 5s ease-out;
+    animation: fadeInUpInfoDelay 4.2s ease-out;
 }
 
 @keyframes fadeOutUp {
