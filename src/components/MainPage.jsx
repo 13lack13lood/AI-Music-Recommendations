@@ -34,12 +34,12 @@ const MainPage = () => {
     }
 
     return (
-        <>
-            <Playlist></Playlist>
-        </>
         // <>
-        //     <Selection setTracks={setTracks} setArtists={setArtists} setDisplay={setDisplay} />
+        //     <Playlist></Playlist>
         // </>
+        <>
+            <Selection setTracks={setTracks} setArtists={setArtists} setDisplay={setDisplay} />
+        </>
     );
 };
 
