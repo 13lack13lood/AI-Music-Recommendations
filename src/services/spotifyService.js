@@ -9,7 +9,7 @@ const redirect = "http://localhost:5173/callback";
 
 let tracks,
     artists,
-    recommendedTracks,
+    recommended = [],
     callsMade = 0,
     callsNeeded = 100,
     playlistCreated = false;
@@ -118,7 +118,7 @@ const isPlaylistCreated = () => {
 
 const addSongsToPlaylist = () => {
     let uris = [];
-    recommendedTracks.forEach((track) => {
+    recommended.forEach((track) => {
         uris.push(track.uri);
     });
 
@@ -183,7 +183,7 @@ const getArtists = () => {
 };
 
 const getRecommendedTracksData = async (generatedTracks) => {
-    recommendedTracks = [];
+    recommended = [];
 
     callsMade = 0;
     callsNeeded = Object.entries(generatedTracks).length;
@@ -197,7 +197,23 @@ const getRecommendedTracksData = async (generatedTracks) => {
         }
 
         callAPI("GET", `https://api.spotify.com/v1/search?query=${values[0]}+${values[1]}&type=track&limit=1`, function () {
-            setRecommendedTracks(JSON.parse(this.response).tracks.items[0]);
+            setRecommended(JSON.parse(this.response).tracks.items[0]);
+
+            addToCallsMade();
+        });
+    }
+};
+
+const getRecommendedArtistsData = async (generatedArtists) => {
+    recommended = [];
+
+    callsMade = 0;
+    callsNeeded = Object.entries(generatedArtists).length;
+    console.log(callsNeeded);
+
+    for (const [track, object] of Object.entries(generatedArtists)) {
+        callAPI("GET", `https://api.spotify.com/v1/search?query=${object.name}&type=artist&limit=1`, function () {
+            setRecommended(JSON.parse(this.response).artists.items[0]);
 
             addToCallsMade();
         });
@@ -212,14 +228,19 @@ const addToCallsMade = () => {
     ++callsMade;
 };
 
-const setRecommendedTracks = (data) => {
-    recommendedTracks.push(data);
+const setRecommended = (data) => {
+    recommended.push(data);
 };
 
 const getRecommendedTracks = (tracks) => {
     getRecommendedTracksData(tracks);
 
-    return recommendedTracks;
+    return recommended;
 };
 
-export { authorize, onPageLoad, getTracks, getArtists, getRecommendedTracks, callsComplete, getUserId, createPlaylist, isPlaylistCreated, addSongsToPlaylist, redirect };
+const getRecommendedArtists = (artists) => {
+    getRecommendedArtistsData(artists);
+
+    return recommended;
+};
+export { authorize, onPageLoad, getTracks, getArtists, getRecommendedTracks, getRecommendedArtists, callsComplete, getUserId, createPlaylist, isPlaylistCreated, addSongsToPlaylist, redirect };

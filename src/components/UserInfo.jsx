@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../styles/UserInfo.css";
 import Button from "./Button";
-import { sendCall } from "../services/openAIService";
 import Song from "./Song";
+import Artist from "./Artist";
 
 const UserInfo = ({ display, tracks, artists, setDisplay }) => {
     const [animate, setAnimate] = useState(false);
@@ -28,31 +28,28 @@ const UserInfo = ({ display, tracks, artists, setDisplay }) => {
                         console.log(artist);
 
                         return (
-                            <div className={`fadeInUp${index + 1} flex flex-row space-x-3 text-white bg-white/[.15] p-2 m-2 hover:scale-[1.03] hover:bg-white/[.3] transition ease-out`}>
-                                <img src={artist.images[2].url} alt="" width="60px" />
-                                <div className="flex flex-col justify-center">
-                                    <div className="text-base hover:scale-[1.03] transition ease-out">
-                                        <a href={artist.external_urls.spotify} target="_blank">
-                                            {artist.name}
-                                        </a>
-                                    </div>
-                                    <div className="flex flex-row text-sm text-white/70 space-x-3 capitalize flex-wrap">
-                                        {artist.genres.map((genre) => {
-                                            return <p>{genre}</p>;
-                                        })}
-                                    </div>
-                                </div>
+                            <div className={`fadeInUp${index + 1}`}>
+                                <Artist artist={artist}></Artist>
                             </div>
                         );
                     })}
             </div>
-            <div className="fadeInUpInfoDelay">
+            <div className="flex flex-row fadeInUpInfoDelay w-[80%] justify-evenly items-center">
                 <Button
                     text="Generate Recommendations"
                     onclick={() => {
                         setAnimate(true);
                         setTimeout(() => {
                             setDisplay("generate_" + display);
+                        }, 1100);
+                    }}
+                />
+                <Button
+                    text="Back"
+                    onclick={() => {
+                        setAnimate(true);
+                        setTimeout(() => {
+                            setDisplay("selection");
                         }, 1100);
                     }}
                 />

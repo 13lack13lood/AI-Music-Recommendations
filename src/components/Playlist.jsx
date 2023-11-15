@@ -32,7 +32,6 @@ const Playlist = ({ setDisplay }) => {
                     placeholder="Playlist Name ..."
                     onChange={(e) => {
                         setPlaylistName(e.currentTarget.value);
-                        console.log(playlistName);
                     }}
                 ></TextInput>
             </div>
