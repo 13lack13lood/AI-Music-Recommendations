@@ -5,7 +5,7 @@ const clientSecret = token.clientSecret;
 
 const authURL = "https://accounts.spotify.com/authorize";
 const tokenURL = "https://accounts.spotify.com/api/token";
-const redirect = "http://localhost:9080";
+const redirect = "https://harryzhu.ca/music-recommendations/";
 
 let tracks,
 	artists,
