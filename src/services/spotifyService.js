@@ -20,7 +20,7 @@ const authorize = () => {
 		response_type: "code",
 		redirect_uri: encodeURI(redirect),
 		show_dialog: true,
-		scope: "user-read-private user-read-email user-top-read user-read-recently-played playlist-modify-public playlist-modify-private",
+		scope: "user-read-private user-read-email user-top-read playlist-modify-public playlist-modify-private",
 	};
 
 	const url = new URL(authURL);
