@@ -44,36 +44,28 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
 	useEffect(() => {
 		setGeneratedData("loading");
 
-		console.log(displayType);
 		if (display.startsWith("generate") && display.includes("artist") && displayType.includes("tracks")) {
-			const tracklist = getGeneratedData();
-			console.log(tracklist);
+			const generatedArtistList = getGeneratedData();
 
-			sendCallArtistTrack(tracklist);
+			sendCallArtistTrack(generatedArtistList);
 
 			setCount_2(count_2 + 1);
 		} else if (display.startsWith("generate") && display.includes("track")) {
-			console.log(tracks);
-
 			if (displayType != "tracks") {
 				setDisplayType("tracks");
 			}
 
 			const tracklist = getTrackList(tracks);
-			console.log(tracklist);
 
 			sendCallTrack(tracklist);
 
 			setCount_2(count_2 + 1);
 		} else if (display.startsWith("generate") && display.includes("artist")) {
-			console.log(artists);
-
 			if (displayType != "artists") {
 				setDisplayType("artists");
 			}
 
 			const artistList = getArtistList(artists);
-			console.log(artistList);
 
 			sendCallArtist(artistList);
 
@@ -85,8 +77,6 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
 		if (isDataReady()) {
 			let response = getGeneratedData();
 			response = JSON.parse(response.substring(response.indexOf("{")));
-			console.log(response);
-			console.log(displayType);
 
 			if (displayType == "tracks") {
 				setGeneratedProperData(getRecommendedTracks(response));
@@ -104,7 +94,6 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
 	}, [count_2, setCount_2]);
 
 	useEffect(() => {
-		console.log(callsComplete());
 		if (callsComplete() && count_1 % 6 == 0) {
 			setGeneratedData(generatedProperData);
 			setAnimate(false);
@@ -159,7 +148,6 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
 						<Button
 							text={displayType.includes("tracks") ? "Add To Playlist" : "Recommend Songs"}
 							onclick={() => {
-								console.log(displayType);
 								setAnimate(true);
 								setTimeout(() => {
 									if (displayType.includes("tracks")) {
@@ -175,7 +163,6 @@ const GeneratedContent = ({ display, artists, tracks, setDisplay }) => {
 							text="Regenerate"
 							onclick={() => {
 								setAnimate(true);
-								console.log(displayType);
 								setTimeout(() => {
 									if (display.includes("tracks")) {
 										setGeneratedData("loading");

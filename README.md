@@ -3,20 +3,23 @@
 #### [Work In Progress]
 
 Currently a work in progress full-stack web application that uses a user's Spotify data to generate music recommendations using OpenAI's GPT 3.5 Turbo.
-The frontend is made with React and uses Tailwind for styling. The backend server is uses ExpressJS along with the OpenAI's JavaScript API.
+The frontend is made with React and uses Tailwind for styling. The backend server is uses ExpressJS along with the OpenAI's JavaScript API. [Link to backend code](https://github.com/13lack13lood/AI-Music-Recommendations-Backend)
 
-### Technologies Used:
-  - React
-  - ExpressJS
-  - OpenAI API
-  - Spotify REST API
+### Technologies/Libraries/APIs Used:
+
+-   Node
+-   React
+-   Express
+-   Vite
+-   Tailwind
+-   OpenAI API
+-   Spotify REST API
 
 ### Current Features:
-  - Pulls user's top 50 tracks last month
-  - Pulls user's top 50 artists last month
-  - Generates music recommendations using OpenAI GPT 3.5 Turbo
-  - Adds those recommendations to the user's Spotify library as a playlist
 
+-   Pulls user's top 50 tracks or artists last month
+-   Generates music and artists recommendations based on either their top tracks or artists using OpenAI GPT 3.5 Turbo
+-   Adds those recommendations to the user's Spotify library as a playlist
 
 ![image](https://github.com/13lack13lood/AI-Music-Recommendations/assets/44007891/cf9fd46e-fb60-4a56-b19f-197ffa50a017)
 

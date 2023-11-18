@@ -12,8 +12,6 @@ const sendCallTrack = (input) => {
 
 	let searchParams = new URLSearchParams(params);
 
-	console.log(searchParams.toString());
-
 	let request = new XMLHttpRequest();
 	request.open("POST", `${backendURL}/get-recommendation-track`);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -21,7 +19,6 @@ const sendCallTrack = (input) => {
 	request.onload = () => {
 		if (request.status == 200) {
 			storeData(JSON.parse(request.response).data);
-			console.log(request.response);
 			setDataGenerated();
 		} else {
 			sendCallTrack(input);
@@ -38,8 +35,6 @@ const sendCallArtist = (input) => {
 
 	let searchParams = new URLSearchParams(params);
 
-	console.log(searchParams.toString());
-
 	let request = new XMLHttpRequest();
 	request.open("POST", `${backendURL}/get-recommendation-artist-artist`);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -47,7 +42,6 @@ const sendCallArtist = (input) => {
 	request.onload = () => {
 		if (request.status == 200) {
 			storeData(JSON.parse(request.response).data);
-			console.log(request.response);
 			setDataGenerated();
 		} else {
 			sendCallArtist(input);
@@ -64,8 +58,6 @@ const sendCallArtistTrack = (input) => {
 
 	let searchParams = new URLSearchParams(params);
 
-	console.log(searchParams.toString());
-
 	let request = new XMLHttpRequest();
 	request.open("POST", `${backendURL}/get-recommendation-artist-track`);
 	request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -73,7 +65,6 @@ const sendCallArtistTrack = (input) => {
 	request.onload = () => {
 		if (request.status == 200) {
 			storeData(JSON.parse(request.response).data);
-			console.log(request.response);
 			setDataGenerated();
 		} else {
 			sendCallArtistTrack(input);
