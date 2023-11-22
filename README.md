@@ -2,7 +2,7 @@
 
 [Link to website](https://harryzhu.ca/music-recommendations/)
 
-### Still awaiting Spotify Approval
+#### Not approved by Spotify since it uses OpenAI
 
 A full-stack web application that uses a user's Spotify data to generate music recommendations using OpenAI's GPT 3.5 Turbo.
 The frontend is made with React and uses Tailwind for styling. The backend server is uses ExpressJS along with the OpenAI's JavaScript API. [Link to backend code](https://github.com/13lack13lood/AI-Music-Recommendations-Backend)
