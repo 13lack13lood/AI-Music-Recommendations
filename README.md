@@ -1,6 +1,6 @@
 # AI-Music-Recommendations
 
-[Link to website](https://harryzhu.ca/music-recommendations/)
+[[Link to website]](https://harryzhuprojects.xyz/music-recommendations/)
 
 #### Not approved by Spotify since it uses OpenAI
 
